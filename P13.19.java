@@ -1,0 +1,109 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+//Prime number Series
+import java.io.*;
+class Primes
+{
+	static boolean prime(long num)
+	{
+		boolean isPrime = true;
+		for(int i=2; i<=num-1; i++)
+			if(num%i == 0)	isPrime = false;
+		return isPrime;
+	}
+	static void generate(long max)
+	{
+		long c = 1, num = 2;
+		while(c<=max)
+		{
+			if(prime(num))
+			{
+				System.out.println(num);
+				++c;
+			}
+			++num;
+		}
+	}
+}	
+class PrimeDemo
+{
+	public static void main(String[] args) throws IOException
+	{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("How many Primes: ");
+		int max = Integer.parseInt(br.readLine());
+		Primes.generate(max);
+	}
+=======
+//Prime number Series
+import java.io.*;
+class Primes
+{
+	static boolean prime(long num)
+	{
+		boolean isPrime = true;
+		for(int i=2; i<=num-1; i++)
+			if(num%i == 0)	isPrime = false;
+		return isPrime;
+	}
+	static void generate(long max)
+	{
+		long c = 1, num = 2;
+		while(c<=max)
+		{
+			if(prime(num))
+			{
+				System.out.println(num);
+				++c;
+			}
+			++num;
+		}
+	}
+}	
+class PrimeDemo
+{
+	public static void main(String[] args) throws IOException
+	{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("How many Primes: ");
+		int max = Integer.parseInt(br.readLine());
+		Primes.generate(max);
+	}
+>>>>>>> db80c5c9e978e8d9089e4f7e7e0501a2ee2f811a
+=======
+//Prime number Series
+import java.io.*;
+class Primes
+{
+	static boolean prime(long num)
+	{
+		boolean isPrime = true;
+		for(int i=2; i<=num-1; i++)
+			if(num%i == 0)	isPrime = false;
+		return isPrime;
+	}
+	static void generate(long max)
+	{
+		long c = 1, num = 2;
+		while(c<=max)
+		{
+			if(prime(num))
+			{
+				System.out.println(num);
+				++c;
+			}
+			++num;
+		}
+	}
+}	
+class PrimeDemo
+{
+	public static void main(String[] args) throws IOException
+	{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("How many Primes: ");
+		int max = Integer.parseInt(br.readLine());
+		Primes.generate(max);
+	}
+>>>>>>> db80c5c9e978e8d9089e4f7e7e0501a2ee2f811a
+}

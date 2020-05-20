@@ -1,0 +1,930 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+ravana.h-> function prototype
+
+def.c-> function definition
+
+test.c-> remaining main file
+
+ls
+(To create a static library)
+gcc -c def.c -w
+ar csr sample1.a def.o
+
+(To compile)
+gcc -c -fPIC def.c -w
+
+(To crate a static library)
+gcc -shared -Wl,-soname,sample2.so -osample2.so def.o
+
+ls (see library is created or not)
+//a.out ravana.h sample1.a sample2.so test.c
+
+link with library
+
+gcc test.c -w sample1.a(link with static library) 
+gcc test.c -w sample2.so(link with dynamic library)
+
+
+when a program is linked with static library all the functions present in static library may or may not use in the program but all the functions are copied to the program.
+
+when a program is dynamic library all the functions present in dynamic library are not copied to the program only those functions are use in the program they are copied.
+
+
+IN CASE OF C++
+
+
+(vi ravana.h)
+extern "C"
+{
+	int sum(int, int);
+	int power(int, int);
+	int fact(int);
+	void bbsr();
+}
+
+
+add (ravana.h) header in test.c
+
+
+
+
+
+
+
+
+Pointer
+-------------
+Pointer is a variable which refers only memory address. 
+3 types of memory in computer:- i) Logical Address
+								ii)Virtual Address
+								iii)Physical Address
+Pointer in c only refers virtual address donot use physical address.
+RAM is a physical memory of computer; but pointer doesnot refer physical memory.
+Virtual memory came from logical memory.
+You canot read write with RAM but can in virtual memory.
+Operating system uses segmentation mechanism to translate logical address into virtual address and uses paging mechanism to translate virtual address into physical address. 
+The smallest unit in memory is 1 byte. we can read write operation in 1 byte but less than 1 byte is not posssible.
+G++ and GCC compliler permits to access 4GB memory bcz our compiler is GCC or G++ developed in LINUX.
+GCC and G++ compiler was developed in LINUX operating system and LINUX was developed in 80386 processor.
+There are 2 dedicated bus is connected between micro processor and ram one address bus and another data bus.
+Address is location in memory.
+When pointer refers to starting address of memory that is called as null pointer.
+ex:-
+main()
+{
+	char *p = (char*) 0x00000000;
+}
+When a pointer refers unauthanticated address in memory called a dangling pointer.
+When a pointer doesnot refers any address in memory called wild pointer.
+ex:- char *p;
+
+Doing read and write operation using pointer the concept is called dereference.
+
+Pointer to void type is called generic pointer. Generic pointer can refer to any address but generic pointer cannot be dereferenced.
+main()
+{
+	void *p=(void)0x00000005;
+
+	*(p+0)='A';
+	*(p+1)='B';
+	*(p+2)='C';
+}
+
+Every object in cpp is implicitly refer by this pointer.
+This pointer only can be accessed inside the structure or inside the class.
+Empty structure or empty class minimum reserves 1 byte because only to get an address.
+ex:-
+	struct xxx
+	{
+		int m;
+		int display()
+		{
+			this->m=10;
+		}
+	};
+	main()
+	{
+		xxx p;
+	}
+This pointer is a pointer which refers an object implictly.
+Object internaly refers by this pointer so object must occupy 1 byte in cpp.
+
+Size of a pointer is always 4 bytes irrespective of any data types
+
+CONSTRUCTOR AND DESTRUCTOR
+---------------------------
+If we allocate memory explicitly by using new keyword then we have to delete it
+If we allocate memory implicitly by creating object then we need not have to delete it compiler automatically delete it.
+
+
+
+*What is singleton class?
+Ans:- When class is able to produce only one object is called singleton class.
+
+
+
+Object is the default argument if we call method by an object.
+Ex:- void show(this, int a, int b)	//function definition
+	{
+		this->s = a+b;
+		(or)
+		s= a+b;
+	}
+
+	xxx p;
+	p.show(p,4,5);	//calling the functions      // here p is anonymously passed through function parameter as this
+
+
+
+Operators overloading
+--------------------------
+Bcz most of the operators in c++ are only implimented in scalar types to impliment all those operators in nonscalar type such as structure and class;
+ then c++ support the features of operators overloading.
+	p==q <==> p.operator==(q)
+	p<q <==> p.operator<(q)
+	++k <==> k.operator()
+	k++ <==> k.operator(int x)
+
+	z=x+y;
+	z=
+
+
+	in operator overloading the precedence of the operator or associativity of operator are not change.
+
+
+find/usr/include/c++/4.1.2/	>letter.txt
+cscope -i letter.txt
+
+
+If a virtual function is initialised with 0 that is called Pure virtual function.
+all pure virtual functions are by default null pointers.
+If a class contains pure virtual function that class is called an abstract class / virtual class.
+You cannot create an object of pure virtual class / abstract class.
+Abstract class is used as container, base class in inheritance.
+If a class only cantains only pure virtual function that class is called interface class.
+
+ex:-
+#include<iostream>
+using namespace std;
+
+class xxx
+{
+	private:
+	int a;
+	public:
+    virtual void show()
+    {
+        cout << "I am in base\n";
+    }
+    virtual void getdata()=0;   //pure virtual function
+};
+main()
+{
+	xxx p;	//error cannot create object bcz abstract class
+}
+
+
+
+
+typedef is used to created a new name of an existing data type.
+ex:-
+#include<iostream>
+typedef unsigned int raju;
+typedef double db;
+using namespace std;
+main()
+{
+	raju x;
+	db a;
+	cout << typeid(y).name() << endl;
+	cout << typeid(x).name() << endl;	//display the data type of name during run time
+}
+int bbsr()
+{
+	raju y;
+	db b;
+}
+
+	
+
+class basic_ifstream/class basic_ofstream
+{
+	public:
+	open()
+	is_open()
+	close()
+};
+main()
+{
+	typedef class basic_fstream fstream;
+}
+
+fstream is not a real class it is name of basic_fstream.
+
+
+
+
+All commands for vi editors
+-----------------------------------------------------------------------
+
+Save and exit
+--------------
+:w 		write the modified contents to disk
+:w<filename>	write the contents to the file specified as argument
+:wq		write the modified contents and quit
+:q 		quit the vi session
+:q!		quit and discard the changes
+
+Cursor movement
+----------------
+G 		move to end of file
+:n 		move to the line numbered n
+H 		mone to the top line of the screen
+L 		mone to the last line of the screen
+
+Copy and paste
+---------------
+yy 		copy a line
+<n>yy	copy n lines
+p 		paste the copied lines
+
+Delete text
+------------
+x 		delete one character 
+dw 		delete one word
+dd 		delete one line
+D 		delete till end of line
+d0 		delete to beginning of line
+dG 		delete to end of line
+<n>		delete n lines
+
+Undo and Redo
+--------------
+u 		undo the last change
+. 		redo the last change again
+/<text> 	search the text supplied
+:%s/<old>/<new>/g 		globally replace with new
+%s/old/new/gc 		replace but prompt before replacing
+:sh 				invoke the subshell. Press <Ctrl D> to return back to vi
+:!<command> 		invoke UNIX command
+:ab <abbr> <text> 	When abbr is typed it is replaced with text
+
+
+
+
+LINUX Commands
+-------------------------------------------------
+clear		clear the screen
+cd 			move to the home directory
+cd ..		move to the previous directory
+pwd 		display the current directory
+mkdir <newdir>		create a new directory
+rmdir <dirname>		delete the directory
+rm -rf <dirname>	delete all subdirectories and its files
+vi 					to open the vi editor
+cp <oldfile> <newfile>	copy old file to new file
+rm <ilename>		delete file
+mv <oldfile> <newfile>	copy old file to new file and delete the old file
+cat <filename>		display the file contents
+more <filename>		displays file with scrolling capability
+ls -al 				display all files with details including hidden files
+ls -R 				display contents of the current directory and all its subdirectories
+export <var>=<value> 	sets the environment variable var to value
+unset <var>			remove the environment variable
+printenv 			prints all environment variables
+alias <name>='<command>'	sets the alias. When <name> is executed in the shell, it executes the 'command' instead
+alias 				displays all the alias
+unalias name 		remove the alias
+echo $<var> 		displays the environment variable value
+history 			displays all the commands executed
+ctrl+R 				search in history. Useful when you run some command repeatedly like compiling, 			commands run with lot of arguments etc.
+date 				displays the current date and time
+ping <ip-address>	checks whether the machine is up and running
+ps 					displays all the processes running in this terminal
+ps -ef 				displays all the processes running in the system
+ctrl+Z 				suspends the current process   
+kill -9 <pid>		terminates a process
+exit 				exits from the terminbal and closes it
+shutdown-h			shutdown the system
+shutdown-r 			reboots the system
+=======
+ravana.h-> function prototype
+
+def.c-> function definition
+
+test.c-> remaining main file
+
+ls
+(To create a static library)
+gcc -c def.c -w
+ar csr sample1.a def.o
+
+(To compile)
+gcc -c -fPIC def.c -w
+
+(To crate a static library)
+gcc -shared -Wl,-soname,sample2.so -osample2.so def.o
+
+ls (see library is created or not)
+//a.out ravana.h sample1.a sample2.so test.c
+
+link with library
+
+gcc test.c -w sample1.a(link with static library) 
+gcc test.c -w sample2.so(link with dynamic library)
+
+
+when a program is linked with static library all the functions present in static library may or may not use in the program but all the functions are copied to the program.
+
+when a program is dynamic library all the functions present in dynamic library are not copied to the program only those functions are use in the program they are copied.
+
+
+IN CASE OF C++
+
+
+(vi ravana.h)
+extern "C"
+{
+	int sum(int, int);
+	int power(int, int);
+	int fact(int);
+	void bbsr();
+}
+
+
+add (ravana.h) header in test.c
+
+
+
+
+
+
+
+
+Pointer
+-------------
+Pointer is a variable which refers only memory address. 
+3 types of memory in computer:- i) Logical Address
+								ii)Virtual Address
+								iii)Physical Address
+Pointer in c only refers virtual address donot use physical address.
+RAM is a physical memory of computer; but pointer doesnot refer physical memory.
+Virtual memory came from logical memory.
+You canot read write with RAM but can in virtual memory.
+Operating system uses segmentation mechanism to translate logical address into virtual address and uses paging mechanism to translate virtual address into physical address. 
+The smallest unit in memory is 1 byte. we can read write operation in 1 byte but less than 1 byte is not posssible.
+G++ and GCC compliler permits to access 4GB memory bcz our compiler is GCC or G++ developed in LINUX.
+GCC and G++ compiler was developed in LINUX operating system and LINUX was developed in 80386 processor.
+There are 2 dedicated bus is connected between micro processor and ram one address bus and another data bus.
+Address is location in memory.
+When pointer refers to starting address of memory that is called as null pointer.
+ex:-
+main()
+{
+	char *p = (char*) 0x00000000;
+}
+When a pointer refers unauthanticated address in memory called a dangling pointer.
+When a pointer doesnot refers any address in memory called wild pointer.
+ex:- char *p;
+
+Doing read and write operation using pointer the concept is called dereference.
+
+Pointer to void type is called generic pointer. Generic pointer can refer to any address but generic pointer cannot be dereferenced.
+main()
+{
+	void *p=(void)0x00000005;
+
+	*(p+0)='A';
+	*(p+1)='B';
+	*(p+2)='C';
+}
+
+Every object in cpp is implicitly refer by this pointer.
+This pointer only can be accessed inside the structure or inside the class.
+Empty structure or empty class minimum reserves 1 byte because only to get an address.
+ex:-
+	struct xxx
+	{
+		int m;
+		int display()
+		{
+			this->m=10;
+		}
+	};
+	main()
+	{
+		xxx p;
+	}
+This pointer is a pointer which refers an object implictly.
+Object internaly refers by this pointer so object must occupy 1 byte in cpp.
+
+Size of a pointer is always 4 bytes irrespective of any data types
+
+CONSTRUCTOR AND DESTRUCTOR
+---------------------------
+If we allocate memory explicitly by using new keyword then we have to delete it
+If we allocate memory implicitly by creating object then we need not have to delete it compiler automatically delete it.
+
+
+
+*What is singleton class?
+Ans:- When class is able to produce only one object is called singleton class.
+
+
+
+Object is the default argument if we call method by an object.
+Ex:- void show(this, int a, int b)	//function definition
+	{
+		this->s = a+b;
+		(or)
+		s= a+b;
+	}
+
+	xxx p;
+	p.show(p,4,5);	//calling the functions      // here p is anonymously passed through function parameter as this
+
+
+
+Operators overloading
+--------------------------
+Bcz most of the operators in c++ are only implimented in scalar types to impliment all those operators in nonscalar type such as structure and class;
+ then c++ support the features of operators overloading.
+	p==q <==> p.operator==(q)
+	p<q <==> p.operator<(q)
+	++k <==> k.operator()
+	k++ <==> k.operator(int x)
+
+	z=x+y;
+	z=
+
+
+	in operator overloading the precedence of the operator or associativity of operator are not change.
+
+
+find/usr/include/c++/4.1.2/	>letter.txt
+cscope -i letter.txt
+
+
+If a virtual function is initialised with 0 that is called Pure virtual function.
+all pure virtual functions are by default null pointers.
+If a class contains pure virtual function that class is called an abstract class / virtual class.
+You cannot create an object of pure virtual class / abstract class.
+Abstract class is used as container, base class in inheritance.
+If a class only cantains only pure virtual function that class is called interface class.
+
+ex:-
+#include<iostream>
+using namespace std;
+
+class xxx
+{
+	private:
+	int a;
+	public:
+    virtual void show()
+    {
+        cout << "I am in base\n";
+    }
+    virtual void getdata()=0;   //pure virtual function
+};
+main()
+{
+	xxx p;	//error cannot create object bcz abstract class
+}
+
+
+
+
+typedef is used to created a new name of an existing data type.
+ex:-
+#include<iostream>
+typedef unsigned int raju;
+typedef double db;
+using namespace std;
+main()
+{
+	raju x;
+	db a;
+	cout << typeid(y).name() << endl;
+	cout << typeid(x).name() << endl;	//display the data type of name during run time
+}
+int bbsr()
+{
+	raju y;
+	db b;
+}
+
+	
+
+class basic_ifstream/class basic_ofstream
+{
+	public:
+	open()
+	is_open()
+	close()
+};
+main()
+{
+	typedef class basic_fstream fstream;
+}
+
+fstream is not a real class it is name of basic_fstream.
+
+
+
+
+All commands for vi editors
+-----------------------------------------------------------------------
+
+Save and exit
+--------------
+:w 		write the modified contents to disk
+:w<filename>	write the contents to the file specified as argument
+:wq		write the modified contents and quit
+:q 		quit the vi session
+:q!		quit and discard the changes
+
+Cursor movement
+----------------
+G 		move to end of file
+:n 		move to the line numbered n
+H 		mone to the top line of the screen
+L 		mone to the last line of the screen
+
+Copy and paste
+---------------
+yy 		copy a line
+<n>yy	copy n lines
+p 		paste the copied lines
+
+Delete text
+------------
+x 		delete one character 
+dw 		delete one word
+dd 		delete one line
+D 		delete till end of line
+d0 		delete to beginning of line
+dG 		delete to end of line
+<n>		delete n lines
+
+Undo and Redo
+--------------
+u 		undo the last change
+. 		redo the last change again
+/<text> 	search the text supplied
+:%s/<old>/<new>/g 		globally replace with new
+%s/old/new/gc 		replace but prompt before replacing
+:sh 				invoke the subshell. Press <Ctrl D> to return back to vi
+:!<command> 		invoke UNIX command
+:ab <abbr> <text> 	When abbr is typed it is replaced with text
+
+
+
+
+LINUX Commands
+-------------------------------------------------
+clear		clear the screen
+cd 			move to the home directory
+cd ..		move to the previous directory
+pwd 		display the current directory
+mkdir <newdir>		create a new directory
+rmdir <dirname>		delete the directory
+rm -rf <dirname>	delete all subdirectories and its files
+vi 					to open the vi editor
+cp <oldfile> <newfile>	copy old file to new file
+rm <ilename>		delete file
+mv <oldfile> <newfile>	copy old file to new file and delete the old file
+cat <filename>		display the file contents
+more <filename>		displays file with scrolling capability
+ls -al 				display all files with details including hidden files
+ls -R 				display contents of the current directory and all its subdirectories
+export <var>=<value> 	sets the environment variable var to value
+unset <var>			remove the environment variable
+printenv 			prints all environment variables
+alias <name>='<command>'	sets the alias. When <name> is executed in the shell, it executes the 'command' instead
+alias 				displays all the alias
+unalias name 		remove the alias
+echo $<var> 		displays the environment variable value
+history 			displays all the commands executed
+ctrl+R 				search in history. Useful when you run some command repeatedly like compiling, 			commands run with lot of arguments etc.
+date 				displays the current date and time
+ping <ip-address>	checks whether the machine is up and running
+ps 					displays all the processes running in this terminal
+ps -ef 				displays all the processes running in the system
+ctrl+Z 				suspends the current process   
+kill -9 <pid>		terminates a process
+exit 				exits from the terminbal and closes it
+shutdown-h			shutdown the system
+shutdown-r 			reboots the system
+>>>>>>> db80c5c9e978e8d9089e4f7e7e0501a2ee2f811a
+=======
+ravana.h-> function prototype
+
+def.c-> function definition
+
+test.c-> remaining main file
+
+ls
+(To create a static library)
+gcc -c def.c -w
+ar csr sample1.a def.o
+
+(To compile)
+gcc -c -fPIC def.c -w
+
+(To crate a static library)
+gcc -shared -Wl,-soname,sample2.so -osample2.so def.o
+
+ls (see library is created or not)
+//a.out ravana.h sample1.a sample2.so test.c
+
+link with library
+
+gcc test.c -w sample1.a(link with static library) 
+gcc test.c -w sample2.so(link with dynamic library)
+
+
+when a program is linked with static library all the functions present in static library may or may not use in the program but all the functions are copied to the program.
+
+when a program is dynamic library all the functions present in dynamic library are not copied to the program only those functions are use in the program they are copied.
+
+
+IN CASE OF C++
+
+
+(vi ravana.h)
+extern "C"
+{
+	int sum(int, int);
+	int power(int, int);
+	int fact(int);
+	void bbsr();
+}
+
+
+add (ravana.h) header in test.c
+
+
+
+
+
+
+
+
+Pointer
+-------------
+Pointer is a variable which refers only memory address. 
+3 types of memory in computer:- i) Logical Address
+								ii)Virtual Address
+								iii)Physical Address
+Pointer in c only refers virtual address donot use physical address.
+RAM is a physical memory of computer; but pointer doesnot refer physical memory.
+Virtual memory came from logical memory.
+You canot read write with RAM but can in virtual memory.
+Operating system uses segmentation mechanism to translate logical address into virtual address and uses paging mechanism to translate virtual address into physical address. 
+The smallest unit in memory is 1 byte. we can read write operation in 1 byte but less than 1 byte is not posssible.
+G++ and GCC compliler permits to access 4GB memory bcz our compiler is GCC or G++ developed in LINUX.
+GCC and G++ compiler was developed in LINUX operating system and LINUX was developed in 80386 processor.
+There are 2 dedicated bus is connected between micro processor and ram one address bus and another data bus.
+Address is location in memory.
+When pointer refers to starting address of memory that is called as null pointer.
+ex:-
+main()
+{
+	char *p = (char*) 0x00000000;
+}
+When a pointer refers unauthanticated address in memory called a dangling pointer.
+When a pointer doesnot refers any address in memory called wild pointer.
+ex:- char *p;
+
+Doing read and write operation using pointer the concept is called dereference.
+
+Pointer to void type is called generic pointer. Generic pointer can refer to any address but generic pointer cannot be dereferenced.
+main()
+{
+	void *p=(void)0x00000005;
+
+	*(p+0)='A';
+	*(p+1)='B';
+	*(p+2)='C';
+}
+
+Every object in cpp is implicitly refer by this pointer.
+This pointer only can be accessed inside the structure or inside the class.
+Empty structure or empty class minimum reserves 1 byte because only to get an address.
+ex:-
+	struct xxx
+	{
+		int m;
+		int display()
+		{
+			this->m=10;
+		}
+	};
+	main()
+	{
+		xxx p;
+	}
+This pointer is a pointer which refers an object implictly.
+Object internaly refers by this pointer so object must occupy 1 byte in cpp.
+
+Size of a pointer is always 4 bytes irrespective of any data types
+
+CONSTRUCTOR AND DESTRUCTOR
+---------------------------
+If we allocate memory explicitly by using new keyword then we have to delete it
+If we allocate memory implicitly by creating object then we need not have to delete it compiler automatically delete it.
+
+
+
+*What is singleton class?
+Ans:- When class is able to produce only one object is called singleton class.
+
+
+
+Object is the default argument if we call method by an object.
+Ex:- void show(this, int a, int b)	//function definition
+	{
+		this->s = a+b;
+		(or)
+		s= a+b;
+	}
+
+	xxx p;
+	p.show(p,4,5);	//calling the functions      // here p is anonymously passed through function parameter as this
+
+
+
+Operators overloading
+--------------------------
+Bcz most of the operators in c++ are only implimented in scalar types to impliment all those operators in nonscalar type such as structure and class;
+ then c++ support the features of operators overloading.
+	p==q <==> p.operator==(q)
+	p<q <==> p.operator<(q)
+	++k <==> k.operator()
+	k++ <==> k.operator(int x)
+
+	z=x+y;
+	z=
+
+
+	in operator overloading the precedence of the operator or associativity of operator are not change.
+
+
+find/usr/include/c++/4.1.2/	>letter.txt
+cscope -i letter.txt
+
+
+If a virtual function is initialised with 0 that is called Pure virtual function.
+all pure virtual functions are by default null pointers.
+If a class contains pure virtual function that class is called an abstract class / virtual class.
+You cannot create an object of pure virtual class / abstract class.
+Abstract class is used as container, base class in inheritance.
+If a class only cantains only pure virtual function that class is called interface class.
+
+ex:-
+#include<iostream>
+using namespace std;
+
+class xxx
+{
+	private:
+	int a;
+	public:
+    virtual void show()
+    {
+        cout << "I am in base\n";
+    }
+    virtual void getdata()=0;   //pure virtual function
+};
+main()
+{
+	xxx p;	//error cannot create object bcz abstract class
+}
+
+
+
+
+typedef is used to created a new name of an existing data type.
+ex:-
+#include<iostream>
+typedef unsigned int raju;
+typedef double db;
+using namespace std;
+main()
+{
+	raju x;
+	db a;
+	cout << typeid(y).name() << endl;
+	cout << typeid(x).name() << endl;	//display the data type of name during run time
+}
+int bbsr()
+{
+	raju y;
+	db b;
+}
+
+	
+
+class basic_ifstream/class basic_ofstream
+{
+	public:
+	open()
+	is_open()
+	close()
+};
+main()
+{
+	typedef class basic_fstream fstream;
+}
+
+fstream is not a real class it is name of basic_fstream.
+
+
+
+
+All commands for vi editors
+-----------------------------------------------------------------------
+
+Save and exit
+--------------
+:w 		write the modified contents to disk
+:w<filename>	write the contents to the file specified as argument
+:wq		write the modified contents and quit
+:q 		quit the vi session
+:q!		quit and discard the changes
+
+Cursor movement
+----------------
+G 		move to end of file
+:n 		move to the line numbered n
+H 		mone to the top line of the screen
+L 		mone to the last line of the screen
+
+Copy and paste
+---------------
+yy 		copy a line
+<n>yy	copy n lines
+p 		paste the copied lines
+
+Delete text
+------------
+x 		delete one character 
+dw 		delete one word
+dd 		delete one line
+D 		delete till end of line
+d0 		delete to beginning of line
+dG 		delete to end of line
+<n>		delete n lines
+
+Undo and Redo
+--------------
+u 		undo the last change
+. 		redo the last change again
+/<text> 	search the text supplied
+:%s/<old>/<new>/g 		globally replace with new
+%s/old/new/gc 		replace but prompt before replacing
+:sh 				invoke the subshell. Press <Ctrl D> to return back to vi
+:!<command> 		invoke UNIX command
+:ab <abbr> <text> 	When abbr is typed it is replaced with text
+
+
+
+
+LINUX Commands
+-------------------------------------------------
+clear		clear the screen
+cd 			move to the home directory
+cd ..		move to the previous directory
+pwd 		display the current directory
+mkdir <newdir>		create a new directory
+rmdir <dirname>		delete the directory
+rm -rf <dirname>	delete all subdirectories and its files
+vi 					to open the vi editor
+cp <oldfile> <newfile>	copy old file to new file
+rm <ilename>		delete file
+mv <oldfile> <newfile>	copy old file to new file and delete the old file
+cat <filename>		display the file contents
+more <filename>		displays file with scrolling capability
+ls -al 				display all files with details including hidden files
+ls -R 				display contents of the current directory and all its subdirectories
+export <var>=<value> 	sets the environment variable var to value
+unset <var>			remove the environment variable
+printenv 			prints all environment variables
+alias <name>='<command>'	sets the alias. When <name> is executed in the shell, it executes the 'command' instead
+alias 				displays all the alias
+unalias name 		remove the alias
+echo $<var> 		displays the environment variable value
+history 			displays all the commands executed
+ctrl+R 				search in history. Useful when you run some command repeatedly like compiling, 			commands run with lot of arguments etc.
+date 				displays the current date and time
+ping <ip-address>	checks whether the machine is up and running
+ps 					displays all the processes running in this terminal
+ps -ef 				displays all the processes running in the system
+ctrl+Z 				suspends the current process   
+kill -9 <pid>		terminates a process
+exit 				exits from the terminbal and closes it
+shutdown-h			shutdown the system
+shutdown-r 			reboots the system
+>>>>>>> db80c5c9e978e8d9089e4f7e7e0501a2ee2f811a
